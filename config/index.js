@@ -5,16 +5,20 @@
 const path = require('path')
 
 module.exports = {
+  // dev 开发环境
   dev: {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    // 构建发布的根目录，可配置为资源服务器域名或 CDN 域名
+    assetsPublicPath: './',
     proxyTable: {},
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
+    // 端口号
     port: 9999, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    // 是否自动打开浏览器
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
@@ -39,10 +43,10 @@ module.exports = {
     // set this to false - it *may* help
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
-
+    // 默认情况下，关闭 CSS Sourcemaps，因为使用相对路径会报错。
     cssSourceMap: true
   },
-
+  // production 生产环境
   build: {
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
@@ -55,7 +59,7 @@ module.exports = {
     /**
      * Source Maps
      */
-
+    // 是否开启 cssSourceMap
     productionSourceMap: true,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',

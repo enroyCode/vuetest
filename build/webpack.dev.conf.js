@@ -1,12 +1,20 @@
 'use strict'
+// 工具函数集合
 const utils = require('./utils')
 const webpack = require('webpack')
+// 配置文件
 const config = require('../config')
+// webpack 配置合并插件
 const merge = require('webpack-merge')
 const path = require('path')
+// webpac基本配置
 const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+// 自动生成 html 并且注入到 .html 文件中的插件
+// https://github.com/ampedandwired/html-webpack-plugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+// webpack错误信息提示插件
+// https://github.com/geowarin/friendly-errors-webpack-plugin
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
@@ -45,13 +53,18 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     }
   },
   plugins: [
+    // definePlugin 接收字符串插入到代码当中, 所以你需要的话可以写上 JS 的字符串
+    // 此处，插入适当的环境
+    // https://webpack.js.org/plugins/define-plugin/
     new webpack.DefinePlugin({
       'process.env': require('../config/dev.env')
     }),
+    // HotModule 插件在页面进行变更的时候只会重绘对应的页面模块，不会重绘整个 html 文件
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
+    // 将 index.html 作为入口，注入 html 代码后生成 index.html文件
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
