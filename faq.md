@@ -4,8 +4,8 @@
 2. config 构建配置目录
 3. node_modules 依赖node的工具包目录
 4. src 源码目录
-  <div>4.1. assets 资源目录 </div>
-   <div>4.2. components 组件目录 </div>
-   <div>4.3. router 路由目录 </div>
-   <div>4.4. app.vue 页面级vue组件 </div>
-   <div>4.5. main.js 页面入口js文件 </div>
+   <div style="padding-left="40px">4.1. assets 资源目录 </div>
+   <div style="padding-left="40px">4.2. components 组件目录 </div>
+   <div style="padding-left="40px">4.3. router 路由目录 </div>
+   <div style="padding-left="40px">4.4. app.vue 页面级vue组件 </div>
+   <div style="padding-left="40px">4.5. main.js 页面入口js文件 </div>
