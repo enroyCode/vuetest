@@ -7,11 +7,10 @@ const path = require('path')
 module.exports = {
   // dev 开发环境
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     // 构建发布的根目录，可配置为资源服务器域名或 CDN 域名
-    assetsPublicPath: './',
+    assetsPublicPath: '/',
     proxyTable: {},
 
     // Various Dev Server settings
