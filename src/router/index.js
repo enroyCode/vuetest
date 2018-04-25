@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 //vue-class-component使得组件能够以class类的方式进行书写
 import Component from 'vue-class-component'
 import HelloWorld from '../pages/HelloWorld.vue'
+import Login from '../pages/login/Login.vue'
 
 Vue.use(VueRouter);
 Component.registerHooks([
@@ -16,6 +17,10 @@ const router = new VueRouter({
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld
+    }, {
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
   ]
 });

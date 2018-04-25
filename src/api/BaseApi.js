@@ -2,8 +2,7 @@ import axios from 'axios'
 import EnvUtil from '../utils/EnvUtil.js'
 
 const SC_1001 = 1001;
-axios.defaults.timeout = 60000
-
+axios.defaults.timeout = 60000;
 export default class BaseApi {
   static plat(baseUrl) {
     if (!baseUrl) {
@@ -15,16 +14,18 @@ export default class BaseApi {
   static create(baseUrl) {
     let instance = axios.create({
       baseURL: baseUrl,
-      withCredentials: true
+      withCredentials: true,
+      headers: {'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest', 'Content-Type': 'application/json'},
     });
 
     instance.interceptors.request.use(function (config) {
       config.headers['trace_id'] = uuid();
+      return config;
     }, function (error) {
       return Promise.reject(error);
     });
 
-    instance.interceptors.request.use(function (response) {
+    instance.interceptors.response.use(function (response) {
       if (response.data instanceof ArrayBuffer) {
         return response
       }
@@ -32,14 +33,12 @@ export default class BaseApi {
         return response
       }
     }, function (error) {
-      if (!error.response) {
-        error.message = '请检查网络设置';
-        return Promise.reject(error);
-      }
-      switch (error.response.status) {
-        case SC_1001:
-          error.message = '登录已过期,请重新登录!';
-          break;
+      if (error.response) {
+        switch (error.response.status) {
+          case SC_1001:
+            error.message = '登录已过期,请重新登录!';
+            break;
+        }
       }
       return Promise.reject(error);
     });
